@@ -14,7 +14,67 @@ const HomePage = () => {
 	const [selectedItem, setSelectedItem] = useState({});
 	useEffect(
 		() => {
-			getMenu();
+			const abortController = new AbortController();
+			const source = axios.CancelToken.source();
+
+			const loadData = async () => {
+				try {
+					const menuResponse = await axios.get('/menu/', {
+						cancelToken: source.token
+					});
+					const crustResponse = await axios.get('/crusts/', {
+						cancelToken: source.token
+					});
+					const toppingResponse = await axios.get('/topping/', {
+						cancelToken: source.token
+					});
+					const sizeResponse = await axios.get('/size/', {
+						cancelToken: source.token
+					});
+
+					setMenu(menuResponse.data);
+					setCrusts(crustResponse.data);
+					setToppings(toppingResponse.data);
+					setSizes(sizeResponse.data);
+				} catch (error) {
+					if (axios.isCancel(error)) {
+						console.log('cancelled');
+					} else {
+						throw error;
+					}
+				}
+			};
+
+			// http
+			//   .get("/menu/")
+			//   .then(res => {
+			//     setMenu(res.data);
+			//   })
+			//   .catch(err => console.log(err));
+
+			// http
+			//   .get("/crusts/")
+			//   .then(res => {
+			//     setCrusts(res.data);
+			//   })
+			//   .catch(err => console.log(err));
+			// http
+			//   .get("/topping/")
+			//   .then(res => {
+			//     setToppings(res.data);
+			//   })
+			//   .catch(err => console.log(err));
+			// http
+			//   .get("/size/")
+			//   .then(res => {
+			//     setSizes(res.data);
+			//   })
+			//   .catch(err => console.log(err));
+			loadData();
+			return () => {
+				abortController.abort();
+				source.cancel();
+			};
 		},
 		[menu],
 		[crusts],
@@ -24,63 +84,6 @@ const HomePage = () => {
 		[modalShow],
 		[selectedItem]
 	);
-	function getMenu() {
-		const CancelToken = axios.CancelToken;
-		const source = CancelToken.source();
-
-		const loadData = () => {
-			try {
-				axios.get('/menu/', { cancelToken: source.token }).then(data => {
-					setMenu(data.data);
-				});
-				axios.get('/crusts/', { cancelToken: source.token }).then(res => {
-					setCrusts(res.data);
-				});
-				axios.get('/topping/', { cancelToken: source.token }).then(res => {
-					setToppings(res.data);
-				});
-				axios.get('/size/', { cancelToken: source.token }).then(res => {
-					setSizes(res.data);
-				});
-			} catch (error) {
-				if (axios.isCancel(error)) {
-					console.log('cancelled');
-				} else {
-					throw error;
-				}
-			}
-		};
-
-		// http
-		//   .get("/menu/")
-		//   .then(res => {
-		//     setMenu(res.data);
-		//   })
-		//   .catch(err => console.log(err));
-
-		// http
-		//   .get("/crusts/")
-		//   .then(res => {
-		//     setCrusts(res.data);
-		//   })
-		//   .catch(err => console.log(err));
-		// http
-		//   .get("/topping/")
-		//   .then(res => {
-		//     setToppings(res.data);
-		//   })
-		//   .catch(err => console.log(err));
-		// http
-		//   .get("/size/")
-		//   .then(res => {
-		//     setSizes(res.data);
-		//   })
-		//   .catch(err => console.log(err));
-		loadData();
-		return () => {
-			source.cancel();
-		};
-	}
 
 	/* Refactoring */
 	function addOrderItem(e) {
