@@ -1,11 +1,11 @@
-import React from "react";
-import { Switch, Route, NavLink } from "react-router-dom";
-import { useAuth } from "../../context/auth";
-import Crust from "../Crust";
-import Flavour from "../Flavour";
-import Topping from "../Topping";
-import Size from "../Size";
-import OrderList from "./orderList";
+import React from 'react';
+import { Switch, Route, NavLink } from 'react-router-dom';
+import { useAuth } from '../../context/auth';
+import Crust from '../Crust';
+import Flavour from '../Flavour';
+import Topping from '../Topping';
+import Size from '../Size';
+import OrderList from './orderList';
 
 function DashboardPage(props) {
 	const { setAuthTokens } = useAuth();
@@ -22,7 +22,12 @@ function DashboardPage(props) {
 						className="nav flex-column nav-pills"
 						aria-orientation="vertical"
 					>
-						<NavLink exact className="nav-link" activeClassName="active" to="/admin/">
+						<NavLink
+							exact
+							className="nav-link"
+							activeClassName="active"
+							to="/admin/"
+						>
 							Dashboard
 						</NavLink>
 						<NavLink
@@ -53,9 +58,9 @@ function DashboardPage(props) {
 						>
 							Toppings
 						</NavLink>
-						<a href className="btn btn-danger" onClick={logOut}>
+						<button className="btn btn-danger" onClick={logOut}>
 							Logout
-						</a>
+						</button>
 					</div>
 				</div>
 				<div className="col-9">
