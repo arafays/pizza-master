@@ -14,7 +14,7 @@ const HomePage = () => {
 	const [selectedItem, setSelectedItem] = useState({});
 	useEffect(
 		() => {
-			// getMenu();
+			getMenu();
 		},
 		[menu],
 		[crusts],
