@@ -1,0 +1,79 @@
+@import "https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/lux/bootstrap.min.css";
+@import "https://npmcdn.com/react-bootstrap-table/dist/react-bootstrap-table-all.min.css";
+#root {
+	height: auto;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+.full-height {
+	flex: 1 1 0;
+}
+.App {
+	text-align: center;
+}
+
+.App-logo {
+	height: 40vmin;
+}
+
+nav > ul {
+	padding-left: 0;
+	margin: 0;
+	list-style: none;
+	display: flex;
+	justify-content: space-around;
+}
+
+nav > ul li {
+	flex: 1 1 auto;
+	text-align: center;
+}
+.h-100 {
+	flex: auto;
+}
+
+nav > ul a {
+	text-decoration: none;
+	color: #fff;
+	display: block;
+	background-color: #282c34;
+	padding: 10px 20px;
+}
+
+.App-header {
+	background-color: #282c34;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: white;
+}
+
+.App-link {
+	color: #09d3ac;
+}
+
+.page {
+	padding: 10px 20px;
+}
+
+.pizza-item {
+	display: flex;
+	flex-direction: column;
+	min-height: 380px;
+	background-size: cover;
+}
+.pizza-item .pizza-flavor {
+	color: #fff;
+	text-align: center;
+	background-color: #026491;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+.order-area {
+	border-left: 1px solid #282c34;
+}

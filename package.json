@@ -1,0 +1,23 @@
+{
+  "name": "pizza-app",
+  "version": "1.0.0",
+  "description": "POS for pizza shop",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run start\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  },
+  "main": "index.js",
+  "author": "Abdul Rafay Shaikh",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "concurrently": "^5.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.13",
+    "react-notifications-component": "^2.2.3"
+  }
+}
